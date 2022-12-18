@@ -19,6 +19,7 @@ public class SmokeTest {
 
     @Autowired
     private MockMvc mockMvc;
+
     @Test
     void should_return_ok_when_request_endpoint_of_health() throws Exception {
         mockMvc

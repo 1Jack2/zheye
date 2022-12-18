@@ -1,6 +1,5 @@
 package com.zheye.question.core;
 
-
 import com.zaxxer.hikari.HikariConfig;
 import com.zaxxer.hikari.HikariDataSource;
 import org.springframework.boot.autoconfigure.flyway.FlywayDataSource;
@@ -13,18 +12,18 @@ import javax.sql.DataSource;
 public class DatabaseTestConfiguration {
 
     @Bean(initMethod = "start", destroyMethod = "stop")
-    public PostgreSQLContainer<?> postgreSQLContainer() {
+    public PostgreSQLContainer<?> postgreSqlContainer() {
         return new PostgreSQLContainer<>("postgres:14.1-alpine")
                 .waitingFor(Wait.forListeningPort());
     }
 
     @Bean
     @FlywayDataSource
-    public DataSource dataSource(PostgreSQLContainer<?> postgreSQLContainer) {
+    public DataSource dataSource(PostgreSQLContainer<?> postgreSqlContainer) {
         HikariConfig hikariConfig = new HikariConfig();
-        hikariConfig.setJdbcUrl(postgreSQLContainer.getJdbcUrl());
-        hikariConfig.setUsername(postgreSQLContainer.getUsername());
-        hikariConfig.setPassword(postgreSQLContainer.getPassword());
+        hikariConfig.setJdbcUrl(postgreSqlContainer.getJdbcUrl());
+        hikariConfig.setUsername(postgreSqlContainer.getUsername());
+        hikariConfig.setPassword(postgreSqlContainer.getPassword());
         return new HikariDataSource(hikariConfig);
     }
 }
