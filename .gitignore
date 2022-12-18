@@ -100,3 +100,6 @@ gradle-app.setting
 # JDT-specific (Eclipse Java Development Tools)
 .classpath
 
+# Environment
+application-*.yml
+!application-env.template.yml
